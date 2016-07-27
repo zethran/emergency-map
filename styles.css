@@ -47,6 +47,7 @@ body { margin:0; padding:0; }
 }
 
 .showButton{
+    font-family: Arial;
     width: 175px;
     text-align: center;
     border-radius: 5px;
@@ -84,4 +85,10 @@ body { margin:0; padding:0; }
     bottom: 60px;
     left: 80px;
     z-index: 1000;
+}
+
+#header {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 14px;
 }

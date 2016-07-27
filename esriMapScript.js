@@ -50,7 +50,11 @@ d3.csv("http://www.spc.noaa.gov/climo/reports/today_hail.csv", function(data) {
     data.forEach(function(d){
         makeStandardTime(d.Time);
         var commentsCat = d.Comments.slice(0, -6);
-        var hailMarker = L.marker([d.Lat, d.Lon], {icon: hailIcon, riseOnHover: true}).bindPopup("<b><span>Location: </span></b>" + d.Location +
+        var hailMarker = L.marker([d.Lat, d.Lon], {icon: hailIcon, riseOnHover: true}).bindPopup(
+            "<b><span id='header'>Hail</span></b>" +
+            "<br><b><span>State: </span></b>" + d.State +
+            "<br><b><span>County: </span></b>" + d.County +
+            "<br><b><span>Location: </span></b>" + d.Location +
             "<br><b><span>Size: </span></b>" + d.Size +
             "<br><b><span>Time: </span></b>" + anotherTime +
             "<br><b><span>Comments: </span></b>" + commentsCat);
@@ -136,18 +140,23 @@ function Feature(){
     this.properties = new Object;
 }
 function makeGeoJson(data) {
+    var point;
     var output = {
         "type": "FeatureCollection",
         "features": []
     };
     for (i = 0; i < data.features.length; i++) {
         new Feature();
+        point = [data.features[i].geometry.x, data.features[i].geometry.y];
         var coords = {"type" : "Feature",
             "geometry":
         {
             "type":"Point",
-                "coordinates":data.features[i].geometry.paths[0][0]
-        }};
+                "coordinates": map.pointToLatLng(point)},
+            "properties":{
+                "status" : data.features[i].attributes.Status
+            }
+        };
         output.features.push(coords);
     }
     console.log(output);
@@ -155,16 +164,26 @@ function makeGeoJson(data) {
 }
 $.getJSON(
     {
-        url: 'https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/16/query?where=ELEV%3E9000&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&returnTrueCurves=false&resultOffset=&resultRecordCount=&f=pjson',
+        url: 'http://igems.doi.gov/arcgis/rest/services/igems_haz/MapServer/0/query?where=Stage%3E0&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&f=pjson&__ncforminfo=kG9Xg696oDbr_9KIG8ckbgdp4HSjn_AJdbC1ptUAh3EhBUebzSBKlM5GCXveSsjjPKrjKIGkHERZeHu13LwD4Ll4R8S84xCIyAvG3SNz_GlF4U2RYQ4kPJiVfWmu1ljJ7yzUQTcn8NopBa7moKbpVRfOlGX1DBGX46tgVMqWaNp54i3el1lg7Hn-8FhnAMumiAVrn4r12PsmXSshzlGfYKN3T-LJjagvIz3N19b33CpbjqdecWKwvO0z2I-vYZQLAA7VMqJa1tqJdzUScyM48H9oo0_UwtJwLxJyFwvkym6AkPADZo_cJC6k8vwEX_6EbFwoh2DMaxcGZkkYmGIxzsYMbJUPzIa6ptzIfegn-b0nFoFSr3i3lVJK0Q6gD7uXqAu5t2vvup4aQSEoSpbz2FoaHjV_94KVCs5PhUvbtI1PYmGE3yC9Ml1_eNgu5lKexmVhyQmhGTQjKR0Kv4XzGhQGRrRTITW9JwcapMUvahq1Mn_n6WIMsfIWaSZHHuVfAO8yntRQNF12WHVeg9kK8MfdyTaUyx_Rq9xy73wRexRHJSnQNCRLzQ%3D%3D',
         dataType: 'json',
         success: function(data){
             console.log(data);
-            floodGroup = L.geoJson(makeGeoJson(data)).addTo(map);
+            floodGroup = L.geoJson(makeGeoJson(data), {
+                pointToLayer: function (point, latlng){
+                    return L.marker(latlng);
+                }
+            }).addTo(map);
         }}
-);*/
-
+);
+*/
 
 //get JSON for rain gauges and add to map
+var gaugeIcon = L.icon({
+    iconUrl: 'mapicons/river-2.png',
+    iconAnchor: [15.5, 34],
+    iconSize: [32, 37],
+    popupAnchor: [0, -30]
+});
 $.getJSON(
     {
     url: "http://magic.csr.utexas.edu/public/views/gauges",
@@ -172,7 +191,7 @@ $.getJSON(
     success: function(data) {
         gauges = L.geoJson(data, {
             pointToLayer: function (point, latlng) {
-                return L.circle(latlng, 200);
+                return L.marker(latlng, {icon: gaugeIcon});
             }
         }).bindPopup(function (layer) {
                 return "<b><span>Location: </span></b>" + layer.feature.properties.location +
