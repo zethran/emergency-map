@@ -76,6 +76,12 @@ d3.csv("http://www.spc.noaa.gov/climo/reports/today_wind.csv", function(data){
         d.Lat = +d.Lat;
         d.Lon = +d.Lon;
         d.Time = +d.Time;
+        if (d.Speed == 'UNK'){
+            d.Speed = 'Unknown';
+        } else {
+            d.Speed = +d.Speed;
+            d.Speed = d.Speed + 'mph';
+        }
         windMarker = L.marker([d.Lat, d.Lon], {icon: windIcon, riseOnHover:true});
         makeStandardTime(d.Time);
         var windCommentCat = d.Comments.slice(0, -6);
