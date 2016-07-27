@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Esri Leaflet</title>
+    <!--Load CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Load leaflet -->
+    <link rel="stylesheet" href="leaflet/leaflet.css">
+    <script src="leaflet/leaflet-src.js"></script>
+    <script src="leaflet/leaflet.js"></script>
+
+    <!-- Load Esri Leaflet -->
+    <script src="esri-leaflet-2.0.0/esri-leaflet-v2.0.0/esri-leaflet.js"></script>
+
+    <!-- Load jQuery -->
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+
+    <!-- Load D3 -->
+    <script src="d3.min.js"></script>
+
+    <!-- Load shapefile-to-geoJson -->
+    <script src="leaflet-omnivore-master/leaflet-omnivore.min.js"></script>
+
+</head>
+
+<body>
+<div id="map"></div>
+<div id="sidebar"></div>
+<span id="showHideButton" class="showButton" >Show/Hide Rain Gauges</span>
+<span id="showHideHail" class="showButton">Show/Hide Hail</span>
+<span id="showHideWind" class="showButton">Show/Hide High Winds</span>
+<span id="showHideTorn" class="showButton">Show/Hide Tornadoes</span>
+<span id="showHideEarthquake" class="showButton">Show/Hide Earthquakes</span>
+<script src="esriMapScript.js" class="showButton"></script>
+
+</body>
+
+</html>

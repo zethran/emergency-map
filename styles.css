@@ -1,0 +1,87 @@
+body { margin:0; padding:0; }
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+}
+
+#sidebar{
+    position: fixed;
+    top: 75px;
+    width: 235px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: darkgray;
+    opacity: 0.5;
+    height: 300px;
+    z-index: 999;
+    border: 1px solid black;
+}
+
+#showHideTorn{
+    position: fixed;
+    top: 100px;
+}
+
+#showHideHail{
+    position: fixed;
+    top: 150px;
+}
+
+#showHideWind{
+    position: fixed;
+    top: 200px;
+}
+
+#showHideEarthquake{
+    position: fixed;
+    top: 250px;
+}
+
+#showHideButton{
+    position: fixed;
+    top: 300px;
+}
+
+.showButton{
+    width: 175px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: gray;
+    box-shadow: 0 5px #999999;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    border: 1px solid black;
+    padding: 10px 10px 10px 10px;
+    margin: 0 0 0 0;
+    z-index: 1000;
+    cursor: pointer;
+    color: white;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.showButton:hover{
+    background-color: #666666;
+}
+.showButton:active{
+    transform: translateY(3px);
+    box-shadow: 0 2px #666
+}
+
+#legend {
+    background-color: aqua;
+    color: red;
+    padding: 10px 10px 10px 10px;
+    position: absolute;
+    bottom: 60px;
+    left: 80px;
+    z-index: 1000;
+}
