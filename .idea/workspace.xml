@@ -26,8 +26,8 @@
       <file leaf-file-name="EsriLeaflet.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/EsriLeaflet.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+            <state relative-caret-position="119">
+              <caret line="13" column="81" selection-start-line="13" selection-start-column="81" selection-end-line="13" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -36,8 +36,8 @@
       <file leaf-file-name="esriMapScript.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/esriMapScript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+            <state relative-caret-position="1785">
+              <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
               <folding>
                 <element signature="e#8257#8553#0" expanded="false" />
                 <element signature="n#!!block;n#showWind#0" expanded="false" />
@@ -276,12 +276,12 @@
       <workItem from="1469587978667" duration="1953000" />
       <workItem from="1469598293028" duration="1553000" />
       <workItem from="1469635679533" duration="251000" />
-      <workItem from="1469636161126" duration="1082000" />
+      <workItem from="1469636161126" duration="2651000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100779000" />
+    <option name="totallyTimeSpent" value="102348000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -561,8 +561,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/esriMapScript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        <state relative-caret-position="1785">
+          <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
           <folding>
             <element signature="e#8257#8553#0" expanded="false" />
             <element signature="n#!!block;n#showWind#0" expanded="false" />
@@ -572,8 +572,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/EsriLeaflet.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+        <state relative-caret-position="119">
+          <caret line="13" column="81" selection-start-line="13" selection-start-column="81" selection-end-line="13" selection-end-column="81" />
           <folding />
         </state>
       </provider>
