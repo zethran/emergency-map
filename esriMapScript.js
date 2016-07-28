@@ -39,18 +39,18 @@ if (rawTime>=1300){
 }
     return anotherTime;
 }
-
+var hailMarker;
+var commentsCat;
 d3.csv("http://www.spc.noaa.gov/climo/reports/today_hail.csv", function(data) {
     data.forEach(function (d) {
         d.Lat = +d.Lat;
         d.Lon = +d.Lon;
         d.Size = +d.Size;
         d.Time = +d.Time;
-    console.log(data);
-    data.forEach(function(d){
+        console.log(data);
         makeStandardTime(d.Time);
-        var commentsCat = d.Comments.slice(0, -6);
-        var hailMarker = L.marker([d.Lat, d.Lon], {icon: hailIcon, riseOnHover: true}).bindPopup(
+        commentsCat = d.Comments.slice(0, -6);
+        hailMarker = L.marker([d.Lat, d.Lon], {icon: hailIcon, riseOnHover: true}).bindPopup(
             "<b><span id='header'>Hail</span></b>" +
             "<br><b><span>State: </span></b>" + d.State +
             "<br><b><span>County: </span></b>" + d.County +
@@ -60,7 +60,6 @@ d3.csv("http://www.spc.noaa.gov/climo/reports/today_hail.csv", function(data) {
             "<br><b><span>Comments: </span></b>" + commentsCat);
         hailGroup.addLayer(hailMarker);
     });
-});
     hailGroup.addTo(map);
     console.log('adding hail');
 });
@@ -230,7 +229,10 @@ $.getJSON(
 }
 );
 
-var warnings = new Object();
+function qpfData(){
+    document.getElementById("qpf").style.display = "block";
+}
+$("#qpf").on("click", qpfData);
 
 /*$.getJSON(
     {url: 'tl_2015_us_county.json',

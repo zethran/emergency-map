@@ -92,3 +92,10 @@ body { margin:0; padding:0; }
     text-decoration: underline;
     font-size: 14px;
 }
+
+#qpf {
+    width: 50%;
+    height: 50%;
+    display: none;
+    z-index: 800;
+}
