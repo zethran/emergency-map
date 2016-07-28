@@ -2,7 +2,7 @@
  * Created by The Doctor on 7/19/2016.
  */
 //var map = L.map("map").setView([38.4, -92.3], 7.3);
-var map = L.map("map").setView([31.5, -99.9018], 6);
+var map = L.map("map").setView([39, -99.9018], 5);
 var gauges;
 L.esri.basemapLayer("Topographic").addTo(map);
 
@@ -47,7 +47,6 @@ d3.csv("http://www.spc.noaa.gov/climo/reports/today_hail.csv", function(data) {
         d.Lon = +d.Lon;
         d.Size = +d.Size;
         d.Time = +d.Time;
-        console.log(data);
         makeStandardTime(d.Time);
         commentsCat = d.Comments.slice(0, -6);
         hailMarker = L.marker([d.Lat, d.Lon], {icon: hailIcon, riseOnHover: true}).bindPopup(
@@ -61,10 +60,11 @@ d3.csv("http://www.spc.noaa.gov/climo/reports/today_hail.csv", function(data) {
         hailGroup.addLayer(hailMarker);
     });
     hailGroup.addTo(map);
+    console.log(data);
     console.log('adding hail');
 });
 
-//get data for Wind Speed and add to map
+//get data for Damaging Winds and add to map
 var windMarker;
 var windGroup = L.layerGroup();
 var windIcon = L.icon({
@@ -88,7 +88,8 @@ d3.csv("http://www.spc.noaa.gov/climo/reports/today_wind.csv", function(data){
         windMarker = L.marker([d.Lat, d.Lon], {icon: windIcon, riseOnHover:true});
         makeStandardTime(d.Time);
         var windCommentCat = d.Comments.slice(0, -6);
-        windMarker.bindPopup("<b><span>State: </span></b>" + d.State +
+        windMarker.bindPopup("<b><span id='header'>Damaging Winds</span></b><br>" +
+            "<b><span>State: </span></b>" + d.State +
             "<br><b><span>County: </span></b>" + d.County +
                 "<br><b><span>Location: </span></b>" + d.Location +
         "<br><b><span>Speed: </span></b>" + d.Speed +
@@ -118,7 +119,7 @@ d3.csv("http://www.spc.noaa.gov/climo/reports/today_torn.csv", function (data){
             d.F_Scale = "F-" + d.F_Scale;
         }
         tornMarker = L.marker([d.Lat, d.Lon], {icon: tornIcon, riseOnHover: true}
-        ).bindPopup("<span id='weatherTitle'>Tornado</span><br>" +
+        ).bindPopup("<b><span id='header'>Tornado</span></b>" +
             "<br><b><span>State: </span></b>" + d.State +
             "<br><b><span>County: </span></b>" + d.County +
             "<br><b><span>Location: </span></b>" + d.Location +
@@ -132,7 +133,8 @@ d3.csv("http://www.spc.noaa.gov/climo/reports/today_torn.csv", function (data){
 });
 
 //floods
-/*var floodGroup;
+/*
+var floodGroup;
 function Feature(){
     this.type='Feature';
     this.geometry= new Object;
@@ -193,8 +195,11 @@ $.getJSON(
                 return L.marker(latlng, {icon: gaugeIcon});
             }
         }).bindPopup(function (layer) {
-                return "<b><span>Location: </span></b>" + layer.feature.properties.location +
+                return "<b><span id='header'>Rain Gauge</span></b><br>" +
+                        "<b><span>State: </span></b>" + layer.feature.properties.state +
+            "<br><b><span>Location: </span></b>" + layer.feature.properties.location +
                     "<br><span><b>River: </b></span>" + layer.feature.properties.waterbody +
+                        "<br><span><b>Status: </b></span>" + layer.feature.properties.status+
                     "<br><span><b>Observed: </b></span>" + layer.feature.properties.obstime;
             }).addTo(map);
     console.log(data)}
@@ -220,8 +225,8 @@ $.getJSON(
                 }
             }).bindPopup(function (layer) {
                 var date = new Date(layer.feature.properties.time);
-                return "<b><span>Earthquake</span></b>" +
-                        "<br><br><b><span>Location: </span></b>" + layer.feature.properties.place +
+                return "<b><span id='header'>Earthquake</span></b>" +
+                        "<br><b><span>Location: </span></b>" + layer.feature.properties.place +
                         "<br><span><b>Magnitude: </b></span>" + layer.feature.properties.mag +
                         "<br><span><b>Time: </b></span>" + date
             }).addTo(map);
@@ -232,7 +237,7 @@ $.getJSON(
 function qpfData(){
     document.getElementById("qpf").style.display = "block";
 }
-$("#qpf").on("click", qpfData);
+$("#qpfButton").on("click", qpfData);
 
 /*$.getJSON(
     {url: 'tl_2015_us_county.json',
@@ -247,7 +252,8 @@ $("#qpf").on("click", qpfData);
 //omnivore.kml('http://trmm.gsfc.nasa.gov/trmm_rain/Events/3B42_rain_accumulation_24hr_b.kml').addTo(map);
 
 //get JSON for rain gauges and add to map
-/*var rainGauges;
+/*
+var rainGauges;
 var rainGaugesIcon = L.icon({
     iconUrl: 'mapicons/rainy.png',
     iconAnchor: [15.5, 34],
@@ -332,3 +338,24 @@ function showEarthquake(){
     }
 }
 $("#showHideEarthquake").on("click", showEarthquake);
+
+function showHideQPE(){
+    if (document.getElementById("qpe").style.visibility == "visible"){
+        document.getElementById("qpe").style.visibility = "hidden";
+    } else {
+        document.getElementById("qpf").style.visibility = "hidden";
+        document.getElementById("qpe").style.visibility = "visible";
+    }
+}
+
+function showHideQPF(){
+    if (document.getElementById("qpf").style.visibility == "visible"){
+        document.getElementById("qpf").style.visibility = "hidden";
+    } else {
+        document.getElementById("qpe").style.visibility = "hidden";
+        document.getElementById("qpf").style.visibility = "visible";
+    }
+}
+
+$("#qpeButton").on("click", showHideQPE);
+$("#qpfButton").on("click", showHideQPF);

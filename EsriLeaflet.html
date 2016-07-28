@@ -30,7 +30,7 @@
 <div id="map"></div>
 
 <!--Make a div element for the background of the UI -->
-<div id="sidebar"></div>
+<div id="sidebar"><span class="tooltip">&#128712;</span></div><span class="tooltiptext">Tooltip Text</span>
 
 <!-- Make span elements for the show/hide buttons for each layer -->
 <span id="showHideButton" class="showButton" >Show/Hide River Gauges</span>
@@ -38,7 +38,21 @@
 <span id="showHideWind" class="showButton">Show/Hide High Winds</span>
 <span id="showHideTorn" class="showButton">Show/Hide Tornadoes</span>
 <span id="showHideEarthquake" class="showButton">Show/Hide Earthquakes</span>
-<img id="qpf" src="http://graphical.weather.gov/images/conus/QPF2_conus.png">
+
+<div id="qpSidebar"></div>
+<img  id="qpf" class="qpImage" src="http://graphical.weather.gov/images/conus/PoP121_conus.png" >
+<img id="qpe" class="qpImage" src="http://graphical.weather.gov/images/conus/QPF2_conus.png">
+<span id="qpfButton" class="precipButton">Precipitation Chance Forecast</span>
+<span id="qpeButton" class="precipButton">Precipitation Amount Forecast</span>
+
+<div id="legend"><img src="mapicons/tornado-2.png"><br>Tornado
+<br><img src="mapicons/snowy-2.png"><br>Hail
+<br><img src="mapicons/windturbine.png"><br>High Winds
+<br><img src="mapicons/earthquake-3.png"><br>Earthquake
+<br><img src="mapicons/river-2.png"><br>Rain Gauge
+</div>
+
+<div id="author">Created by Joseph Mathis</div>
 
 <!-- Load My Map Script -->
 <script src="esriMapScript.js" class="showButton"></script>
